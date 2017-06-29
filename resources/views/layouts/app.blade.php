@@ -14,7 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-switch.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/jqcron.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jqCron.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -81,8 +81,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/bootstrap-switch.js') }}"></script>
-    <script src="{{ asset('js/jqcron.js') }}"></script>
-    <script src="{{ asset('js/jqcron.es.js') }}"></script>
+    <script src="{{ asset('js/jqCron.js') }}"></script>
+    <script src="{{ asset('js/jqCron.es.js') }}"></script>
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script>
         $(function() {
