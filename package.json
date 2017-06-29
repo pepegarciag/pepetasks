@@ -25,6 +25,8 @@
     "vue": "^2.1.10"
   },
   "dependencies": {
-    "animate.css": "^3.5.2"
+    "animate.css": "^3.5.2",
+    "bootstrap-switch": "^3.3.4",
+    "sweetalert": "^1.1.3"
   }
 }
