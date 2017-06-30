@@ -181,6 +181,7 @@ return [
          * Telegram Bot Provider
          */
         Telegram\Bot\Laravel\TelegramServiceProvider::class,
+        Fideloper\Proxy\TrustedProxyServiceProvider::class,
     ],
 
     /*
