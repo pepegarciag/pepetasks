@@ -42,7 +42,7 @@ class TasksController extends Controller
         $task->active = TRUE;
         $task->save();
 
-        return redirect('home');
+        return $task;
     }
 
     public function get(Request $request, Task $task)
