@@ -42,7 +42,7 @@ class TasksController extends Controller
         $task->active = TRUE;
         $task->save();
 
-        return $task;
+        return back();
     }
 
     public function get(Request $request, Task $task)
