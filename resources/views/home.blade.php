@@ -10,7 +10,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Crear tarea</div>
                 <div class="panel-body">
-                    <form id="add-task" class="form" method="POST" action="/task/">
+                    <form id="add-task" class="form" method="post" action="/task/">
                         <div class="form-group">
                             <label for="task">Tarea</label>
                                 <input type="text" id="task" name="task" value="{{ old('task') }}" class="form-control">
