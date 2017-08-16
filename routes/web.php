@@ -23,3 +23,9 @@ Route::post('/task', 'TasksController@add')->name('addTask');
 Route::get('/task/{task}', 'TasksController@get')->name('getTask');
 Route::patch('/task/{task}', 'TasksController@edit')->name('editTask');
 Route::delete('/task/{task}', 'TasksController@delete')->name('deleteTask');
+
+Route::post('/384615600:AAHqvIRrBCqnAp93K9Fhoz3jVTnygHXPUWg/webhook', function () {
+    $updates = Telegram::getWebhookUpdates();
+
+    return 'ok';
+});

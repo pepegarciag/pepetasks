@@ -26,7 +26,6 @@ class Telegram extends Command
     /**
      * Create a new command instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -40,8 +39,12 @@ class Telegram extends Command
      */
     public function handle()
     {
-        $update = TelegramApi::commandsHandler();
+        /*$updates = TelegramApi::commandsHandler();
+        var_dump($updates);
 
+        foreach ($updates  as $update) {
+            echo $update->getMessage()->get('from')->get('id');
+        }*/
 
         $tasks = Task::where('active', 1)->get();
 
