@@ -37,7 +37,7 @@
                         <li class="active"><a href="{{ url('/') }}">Inicio</a></li>
 
                         @if (Auth::check())
-                            <li><a href="{{ url('/home') }}">Home</a></li>
+                            <li><a href="{{ url('/home') }}">Panel de gestión</a></li>
                         @else
                             <li><a href="{{ url('/login') }}">Iniciar sesión</a></li>
                             <li><a href="{{ url('/register') }}">Registro</a></li>
