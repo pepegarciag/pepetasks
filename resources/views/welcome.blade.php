@@ -111,7 +111,7 @@
                         <div class="copyright-text text-center">
                             <p>
                                 Made with <span class="fa fa-code"></span> and <span class="fa fa-heart"></span> by
-                                <a target="_blank" class="white" href="https://www.twitter.com/pepegarciag">@pepegarciag_</a>
+                                <a target="_blank" class="white" href="https://www.twitter.com/pepegarciag_">@pepegarciag_</a>
                             </p>
                         </div>
                     </div>
