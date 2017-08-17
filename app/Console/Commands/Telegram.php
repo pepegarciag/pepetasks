@@ -39,24 +39,18 @@ class Telegram extends Command
      */
     public function handle()
     {
-        /*$updates = TelegramApi::commandsHandler();
-        var_dump($updates);
-
-        foreach ($updates  as $update) {
-            echo $update->getMessage()->get('from')->get('id');
-        }*/
-
         $tasks = Task::where('active', 1)->get();
 
         foreach ($tasks as $task) {
             $cron = CronExpression::factory($task->schedule);
+
             if ($cron->isDue()) {
                 TelegramApi::sendMessage([
                     'chat_id' => '4357059',
                     'text' => $task->name,
                 ]);
             }
-            //$this->info('Display this on the screen');
+
         }
     }
 }

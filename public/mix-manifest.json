@@ -1,9 +1,17 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/js/jqCron.es.js": "/js/jqCron.es.js",
+    "/js/jqCron.js": "/js/jqCron.js",
+    "/css/jqCron.css": "/css/jqCron.css",
     "/js/bootstrap-switch.js": "/js/bootstrap-switch.js",
     "/css/bootstrap-switch.css": "/css/bootstrap-switch.css",
     "/css/animate.css": "/css/animate.css",
     "/css/sweetalert.css": "/css/sweetalert.css",
-    "/js/sweetalert.min.js": "/js/sweetalert.min.js"
+    "/js/sweetalert.min.js": "/js/sweetalert.min.js",
+    "/js/main.js": "/js/main.js",
+    "/js/wow.min.js": "/js/wow.min.js",
+    "/css/main.css": "/css/main.css",
+    "/css/responsive.css": "/css/responsive.css",
+    "/css/bootstrap.min.css": "/css/bootstrap.min.css"
 }

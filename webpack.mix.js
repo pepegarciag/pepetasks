@@ -23,3 +23,9 @@ mix.copy('node_modules/animate.css/animate.css', 'public/css');
 
 mix.copy('node_modules/sweetalert/dist/sweetalert.css', 'public/css');
 mix.copy('node_modules/sweetalert/dist/sweetalert.min.js', 'public/js');
+
+mix.copy('resources/assets/js/main.js', 'public/js');
+mix.copy('resources/assets/js/wow.min.js', 'public/js');
+mix.copy('resources/assets/main.css', 'public/css');
+mix.copy('resources/assets/responsive.css', 'public/css');
+mix.copy('resources/assets/bootstrap.min.css', 'public/css');
