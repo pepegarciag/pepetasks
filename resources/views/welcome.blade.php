@@ -43,7 +43,7 @@
                             <li><a href="{{ url('/register') }}">Registro</a></li>
                         @endif
 
-                        <li><a href="https://www.twitter.com/pepegarciag"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://www.twitter.com/pepegarciag_"><i class="fa fa-twitter"></i></a></li>
                     </ul>
                 </div>
             </div>
