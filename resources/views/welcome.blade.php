@@ -35,8 +35,14 @@
                 <div class="container">
                     <ul class="nav navbar-nav navbar-left">
                         <li class="active"><a href="{{ url('/') }}">Inicio</a></li>
-                        <li><a href="{{ url('/login') }}">Iniciar sesión</a></li>
-                        <li><a href="{{ url('/register') }}">Registro</a></li>
+
+                        @if (Auth::check())
+                            <li><a href="{{ url('/home') }}">Home</a></li>
+                        @else
+                            <li><a href="{{ url('/login') }}">Iniciar sesión</a></li>
+                            <li><a href="{{ url('/register') }}">Registro</a></li>
+                        @endif
+
                         <li><a href="https://www.twitter.com/pepegarciag"><i class="fa fa-twitter"></i></a></li>
                     </ul>
                 </div>
