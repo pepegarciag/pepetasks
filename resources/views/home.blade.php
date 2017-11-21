@@ -10,19 +10,21 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Crear tarea</div>
                 <div class="panel-body">
-                    <form id="add-task" class="form" method="post" action="/task/">
+                    <form id="add-event" class="form" method="post" action="/event/">
                         <div class="form-group">
-                            <label for="task">Tarea</label>
-                                <input type="text" id="task" name="task" value="{{ old('task') }}" class="form-control">
+                            <label for="task">Evento</label>
+                                <input type="text" id="event" name="event" value="{{ old('event') }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="schedule">Programación</label>
-                            <div class="cron-schedule">
-                                <input id=""schedule name="schedule" type="hidden" class="cron">
-                            </div>
+                            <label for="task">Descripción</label>
+                            <input type="text" id="description" name="description" value="{{ old('description') }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Añadir tarea</button>
+                            <label for="date">Fecha</label>
+                            <input type="date" id="date" name="date" value="{{ old('date') ? old('date') : \Carbon\Carbon::tomorrow()->format('Y-m-d') }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Añadir evento</button>
                         </div>
                         {{ csrf_field() }}
                     </form>
@@ -38,22 +40,24 @@
                         <thead>
                             <tr>
                                 <th>Tarea</th>
-                                <th>Programación</th>
+                                <th>Descripcion</th>
+                                <th>Fecha</th>
                                 <th>Activa</th>
                                 <th>Editar</th>
                                 <th>Borrar</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($tasks as $task)
-                                <tr data-id="{{ $task->id }}">
-                                    <td>{{ $task->name }}</td>
-                                    <td class="text-center"><div class="schedule">{{ $task->schedule }}</div></td>
+                            @foreach($events as $event)
+                                <tr data-id="{{ $event->id }}">
+                                    <td>{{ $event->name }}</td>
+                                    <td class="text-center">{{ $event->description }}</td>
+                                    <td class="text-center">{{ $event->date->format('d/m/Y') }}</td>
                                     <td class="text-center">
-                                        <input class="edit-status" type="checkbox" name="active" value="{{ $task->active }}" {{ ($task->active) ? "checked='checked'" : "" }}>
+                                        <input class="edit-status" type="checkbox" name="active" value="{{ $event->active }}" {{ ($event->active) ? "checked='checked'" : "" }}>
                                     </td>
-                                    <td><button class="btn btn-xs btn-primary edit-task">Editar</button></td>
-                                    <td><button class="btn btn-xs btn-danger delete-task">Borrar</button></td>
+                                    <td><button class="btn btn-xs btn-primary edit-event">Editar</button></td>
+                                    <td><button class="btn btn-xs btn-danger delete-event">Borrar</button></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -63,26 +67,26 @@
         </div>
     </div>
 </div>
-<div id="edit-task" class="modal fade" tabindex="-1" role="dialog">
+<div id="edit-event" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Edición de tarea</h4>
+                <h4 class="modal-title">Edición de un evento</h4>
             </div>
             <form class="form" action="" method="post">
                 <div class="modal-body">
                         {!! method_field('patch') !!}
                         <div class="form-group">
-                            <label for="task">Tarea</label>
-                            <input type="text" id="task" name="task" value="{{ old('task') }}" class="form-control">
+                            <label for="event">Tarea</label>
+                            <input type="text" id="event" name="event" value="{{ old('event') }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="schedule">Programación</label>
-                            <input id=""schedule name="schedule" type="hidden" class="cron">
+                            <label for="description">Description</label>
+                            <input type="text" id="description" name="description" value="{{ old('description') }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="checkbox" name="active" id="active" value="1">
+                            <input type="checkbox" name="active" id="active" value="{{ old('active') }}">
                         </div>
                         {{ csrf_field() }}
                 </div>

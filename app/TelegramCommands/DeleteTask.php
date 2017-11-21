@@ -8,7 +8,7 @@
 
 namespace App\TelegramCommands;
 
-use App\Task;
+use App\Event;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 
@@ -22,15 +22,15 @@ class DeleteTask extends Command
     /**
      * @var string Command Description
      */
-    protected $description = "Delete a given task by its ID";
+    protected $description = "Delete a given event by its ID";
 
     public function handle($arguments)
     {
-        $task = Task::find($arguments);
-        $task->delete();
+        $event = Event::find($arguments);
+        $event->delete();
 
         $this->replyWithChatAction(['action' => Actions::TYPING]);
-        $this->replyWithMessage(['text' => "Task: {$task->name} deleted"]);
+        $this->replyWithMessage(['text' => "Task: {$event->name} deleted"]);
         //$this->replyWithMessage(['text' => $this->getUpdate()->getMessage()->get('from')->get('id')]);
     }
 }

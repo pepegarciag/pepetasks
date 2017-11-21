@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->command('telegram:sendTasks')->everyMinute();
+        $schedule->command('telegram:sendEvents')->everyMinute();
     }
 
     /**

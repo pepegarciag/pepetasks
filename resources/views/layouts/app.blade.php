@@ -37,42 +37,6 @@
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
             </div>
         </nav>
 
@@ -110,7 +74,7 @@
                 }).jqCronGetInstance().disable();
             });*/
 
-            $("#edit-task").on('show.bs.modal', function(e){
+            $("#edit-event").on('show.bs.modal', function(e){
                 var element = $(e.relatedTarget).closest('tr');
                 $.ajaxSetup({
                     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
@@ -118,18 +82,18 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: "/task/" + element.data('id'),
+                    url: "/event/" + element.data('id'),
                     data: '',
                     dataType: 'json',
                     success: function (data) {
-                        $("#edit-task #task").val(data.name);
-                        $("#edit-task #schedule").val(data.schedule);
-                        $("#edit-task #active").bootstrapSwitch('state', data.active);
-                        $("#edit-task form").attr('action', '/task/' + data.id);
-                        $('#edit-task .cron').jqCron({
+                        $("#edit-event #event").val(data.name);
+                        $("#edit-event #description").val(data.description);
+                        $("#edit-event #active").bootstrapSwitch('state', data.active);
+                        $("#edit-event form").attr('action', '/event/' + data.id);
+                        /*$('#edit-event .cron').jqCron({
                             default_value: data.schedule,
                             lang: 'es'
-                        });
+                        });*/
                     },
                     error: function (data) {
                         console.log('Error:', data);
@@ -146,7 +110,7 @@
 
                 $.ajax({
                     type: 'PATCH',
-                    url: "/task/" + row.data('id'),
+                    url: "/event/" + row.data('id'),
                     data: {active: state},
                     dataType: 'json',
                     success: function (data) {
@@ -163,7 +127,7 @@
 
                 swal({
                     title: "Are you sure?",
-                    text: "You will not be able to recover this task!",
+                    text: "You will not be able to recover this event!",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",
@@ -177,11 +141,11 @@
 
                     $.ajax({
                         type: 'DELETE',
-                        url: "/task/" + row.data('id'),
+                        url: "/event/" + row.data('id'),
                         data: '',
                         dataType: 'json',
                         success: function (data) {
-                            swal("Deleted!", "Your task has been deleted.", "success");
+                            swal("Deleted!", "Your event has been deleted.", "success");
                             swal({
                                 title: "Deleted!",
                                 text: "Your task has been deleted.",

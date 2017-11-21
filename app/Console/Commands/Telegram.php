@@ -4,8 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Telegram\Bot\Laravel\Facades\Telegram as TelegramApi;
-use Cron\CronExpression;
-use App\Task;
+use Carbon\Carbon;
+use App\Event;
+
 
 class Telegram extends Command
 {
@@ -14,7 +15,7 @@ class Telegram extends Command
      *
      * @var string
      */
-    protected $signature = 'telegram:sendTasks';
+    protected $signature = 'telegram:sendEvents';
 
     /**
      * The console command description.
@@ -39,18 +40,20 @@ class Telegram extends Command
      */
     public function handle()
     {
-        $tasks = Task::where('active', 1)->get();
+        $events = Event::where('active', 1)->get();
 
-        foreach ($tasks as $task) {
-            $cron = CronExpression::factory($task->schedule);
-
-            if ($cron->isDue()) {
+        foreach ($events as $event) {
+            if ($event->date >= Carbon::now()) {
                 TelegramApi::sendMessage([
                     'chat_id' => '4357059',
-                    'text' => $task->name,
+                    'text' => "{$event->name} | {$event->description}",
                 ]);
-            }
 
+                $event->active = FALSE;
+                $event->save();
+            }
         }
+
+        return true;
     }
 }

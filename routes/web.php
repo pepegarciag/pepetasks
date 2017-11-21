@@ -10,22 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+$telegramToken = env('TELEGRAM_BOT_TOKEN');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'auth.basic'], function () {
+    Route::view('/', 'welcome');
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::post('/event', 'EventsController@add')->name('addEvent');
+    Route::get('/event/{task}', 'EventsController@get')->name('getEvent');
+    Route::patch('/event/{task}', 'EventsController@edit')->name('editEvent');
+    Route::delete('/event/{task}', 'EventsController@delete')->name('deleteEvent');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::post('/task', 'TasksController@add')->name('addTask');
-Route::get('/task/{task}', 'TasksController@get')->name('getTask');
-Route::patch('/task/{task}', 'TasksController@edit')->name('editTask');
-Route::delete('/task/{task}', 'TasksController@delete')->name('deleteTask');
-
-Route::post('/384615600:AAHqvIRrBCqnAp93K9Fhoz3jVTnygHXPUWg/webhook', function () {
-    $updates = Telegram::getWebhookUpdates();
+Route::post("/{$telegramToken}/webhook", function () {
+    Telegram::commandsHandler(true);
 
     return 'ok';
 });

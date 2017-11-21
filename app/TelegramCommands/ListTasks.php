@@ -8,7 +8,7 @@
 
 namespace App\TelegramCommands;
 
-use App\Task;
+use App\Event;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 
@@ -22,14 +22,14 @@ class ListTasks extends Command
     /**
      * @var string Command Description
      */
-    protected $description = "List all the active tasks";
+    protected $description = "List all the active events";
 
     public function handle($arguments)
     {
-        $tasks = Task::where('active', 1)->get();
+        $events = Event::where('active', 1)->get();
         $response = '';
-        foreach ($tasks as $task) {
-            $response .= sprintf('%s - %s' . PHP_EOL, $task->id, $task->name);
+        foreach ($events as $event) {
+            $response .= sprintf('%s - %s' . PHP_EOL, $event->id, $event->name);
         }
 
         // This will update the chat status to typing...

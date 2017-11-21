@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Task;
+use App\Event;
 use Illuminate\Http\Request;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
@@ -25,8 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //echo "<pre>";var_dump(Telegram::getUpdates());echo "</pre>";
-        $tasks = Task::all();
-        return view('home', ['tasks' => $tasks]);
+        $events = Event::all();
+        return view('home', ['events' => $events]);
     }
 }
