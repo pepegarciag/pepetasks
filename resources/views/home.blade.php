@@ -36,7 +36,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    <table class="tasks table table-hover">
+                    <table class="events table table-hover">
                         <thead>
                             <tr>
                                 <th>Tarea</th>
@@ -84,6 +84,10 @@
                         <div class="form-group">
                             <label for="description">Description</label>
                             <input type="text" id="description" name="description" value="{{ old('description') }}" class="form-control">
+                        </div>
+			<div class="form-group">
+                            <label for="date">Fecha</label>
+                            <input type="date" id="date" name="date" value="{{ old('date') }}" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="checkbox" name="active" id="active" value="{{ old('active') }}">

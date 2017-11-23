@@ -26,19 +26,20 @@ class EventsController extends Controller
         $event = new Event();
         $event->name = $request->event;
         $event->description = $request->description;
-        $event->date = (new Carbon($request->date))->timestamp;
+        $event->date = (new Carbon($request->date));
         $event->active = TRUE;
         $event->save();
 
         return back();
     }
 
-    public function get(Request $request, Task $task)
+    public function get(Request $request, Event $event)
     {
-        return $task;
+	$event->dateFormatted = $event->date->format('Y-m-d');
+        return $event;
     }
 
-    public function edit(Request $request, Event $task)
+    public function edit(Request $request, Event $event)
     {
         $fields = [];
 
@@ -50,6 +51,11 @@ class EventsController extends Controller
             $fields['description'] = $request->description;
         }
 
+	if ($request->has('date')) {
+            $fields['date'] = $request->date;
+        }
+
+
         if ($request->ajax()) {
             $fields['active'] = filter_var($request->active, FILTER_VALIDATE_BOOLEAN);
         }
@@ -57,9 +63,9 @@ class EventsController extends Controller
             $fields['active'] = !empty($request->active) ? TRUE : FALSE;
         }
 
-        $task->update($fields);
+        $event->update($fields);
 
-        return $request->ajax() ? $task : back();
+        return $request->ajax() ? $event : back();
     }
 
     public function delete(Request $request, Event $event)

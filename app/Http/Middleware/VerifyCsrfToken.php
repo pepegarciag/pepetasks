@@ -19,8 +19,9 @@ class VerifyCsrfToken extends BaseVerifier
     public function __construct(Application $app, Encrypter $encrypter)
     {
         parent::__construct($app, $encrypter);
+	$telegramToken = env('TELEGRAM_BOT_TOKEN');
         $this->except = [
-            env('TELEGRAM_BOT_TOKEN')
+            "/{$telegramToken}/webhook"
         ];
     }
 }

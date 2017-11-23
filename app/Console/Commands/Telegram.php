@@ -40,6 +40,11 @@ class Telegram extends Command
      */
     public function handle()
     {
+	//$response = TelegramApi::removeWebHook();
+	//$response = TelegramApi::setWebhook(['url' => "https://pepetasks.es/" . env('TELEGRAM_BOT_TOKEN') . "/webhook"]);
+	//$updates = TelegramApi::getUpdates();
+	//var_dump($response);
+	//var_dump($updates);
         $events = Event::where('active', 1)->get();
 
         foreach ($events as $event) {

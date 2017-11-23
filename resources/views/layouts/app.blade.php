@@ -55,12 +55,8 @@
                 size: 'mini'
             });
 
-            $("table.tasks .edit-task").on('click', function(){
-                $("#edit-task").modal('show', $(this));
-            });
-
-            $('#add-task .cron').jqCron({
-                lang: 'es'
+            $("table.events .edit-event").on('click', function(){
+                $("#edit-event").modal('show', $(this));
             });
 
             /*$("table.tasks tr td .schedule").each(function(index){
@@ -86,9 +82,11 @@
                     data: '',
                     dataType: 'json',
                     success: function (data) {
+			console.log(data);
                         $("#edit-event #event").val(data.name);
                         $("#edit-event #description").val(data.description);
                         $("#edit-event #active").bootstrapSwitch('state', data.active);
+			$("#edit-event #date").val(data.dateFormatted);
                         $("#edit-event form").attr('action', '/event/' + data.id);
                         /*$('#edit-event .cron').jqCron({
                             default_value: data.schedule,
@@ -122,7 +120,7 @@
                 });
             });
 
-            $(".delete-task").on('click', function() {
+            $(".delete-event").on('click', function() {
                 var row = $(this).closest('tr');
 
                 swal({

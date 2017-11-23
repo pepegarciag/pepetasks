@@ -18,9 +18,9 @@ Route::group(['middleware' => 'auth.basic'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::post('/event', 'EventsController@add')->name('addEvent');
-    Route::get('/event/{task}', 'EventsController@get')->name('getEvent');
-    Route::patch('/event/{task}', 'EventsController@edit')->name('editEvent');
-    Route::delete('/event/{task}', 'EventsController@delete')->name('deleteEvent');
+    Route::get('/event/{event}', 'EventsController@get')->name('getEvent');
+    Route::patch('/event/{event}', 'EventsController@edit')->name('editEvent');
+    Route::delete('/event/{event}', 'EventsController@delete')->name('deleteEvent');
 });
 
 Route::post("/{$telegramToken}/webhook", function () {
