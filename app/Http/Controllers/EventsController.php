@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Event;
+use Illuminate\Support\Facades\Log;
 
 class EventsController extends Controller
 {
@@ -26,7 +27,7 @@ class EventsController extends Controller
         $event = new Event();
         $event->name = $request->event;
         $event->description = $request->description;
-        $event->date = (new Carbon($request->date));
+        $event->date = Carbon::createFromFormat('d/m/Y', $request->date);
         $event->active = TRUE;
         $event->save();
 
@@ -35,7 +36,7 @@ class EventsController extends Controller
 
     public function get(Request $request, Event $event)
     {
-	$event->dateFormatted = $event->date->format('Y-m-d');
+	    $event->dateFormatted = $event->date->format('Y-m-d');
         return $event;
     }
 
@@ -51,10 +52,9 @@ class EventsController extends Controller
             $fields['description'] = $request->description;
         }
 
-	if ($request->has('date')) {
+	    if ($request->has('date')) {
             $fields['date'] = $request->date;
         }
-
 
         if ($request->ajax()) {
             $fields['active'] = filter_var($request->active, FILTER_VALIDATE_BOOLEAN);
@@ -72,6 +72,6 @@ class EventsController extends Controller
     {
         // May improve this.
         $event->delete();
-        return ["status" => TRUE];
+        return back();
     }
 }

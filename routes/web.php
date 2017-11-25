@@ -13,9 +13,7 @@
 $telegramToken = env('TELEGRAM_BOT_TOKEN');
 
 Route::group(['middleware' => 'auth.basic'], function () {
-    Route::view('/', 'welcome');
-
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
 
     Route::post('/event', 'EventsController@add')->name('addEvent');
     Route::get('/event/{event}', 'EventsController@get')->name('getEvent');

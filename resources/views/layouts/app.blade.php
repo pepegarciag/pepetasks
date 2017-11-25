@@ -59,17 +59,6 @@
                 $("#edit-event").modal('show', $(this));
             });
 
-            /*$("table.tasks tr td .schedule").each(function(index){
-                var cron = $(this).html();
-                console.log(cron);
-                $(this).html("");
-                $(this).jqCron({
-                    disabled: true,
-                    lang: 'es',
-                    default_value: cron
-                }).jqCronGetInstance().disable();
-            });*/
-
             $("#edit-event").on('show.bs.modal', function(e){
                 var element = $(e.relatedTarget).closest('tr');
                 $.ajaxSetup({
@@ -82,16 +71,12 @@
                     data: '',
                     dataType: 'json',
                     success: function (data) {
-			console.log(data);
+                        console.log(data);
                         $("#edit-event #event").val(data.name);
                         $("#edit-event #description").val(data.description);
-                        $("#edit-event #active").bootstrapSwitch('state', data.active);
-			$("#edit-event #date").val(data.dateFormatted);
+                        $("#edit-event #active").bootstrapSwitch('state', Boolean(data.active));
+			            $("#edit-event #date").val(data.dateFormatted);
                         $("#edit-event form").attr('action', '/event/' + data.id);
-                        /*$('#edit-event .cron').jqCron({
-                            default_value: data.schedule,
-                            lang: 'es'
-                        });*/
                     },
                     error: function (data) {
                         console.log('Error:', data);
@@ -112,6 +97,7 @@
                     data: {active: state},
                     dataType: 'json',
                     success: function (data) {
+                        console.log(data);
                         // May send a notification.
                     },
                     error: function (data) {
