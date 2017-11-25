@@ -266,4 +266,6 @@
 @import "utilities/utilities.opacity";
 @import "utilities/utilities.sizes";
 
-
+.wickedpicker {
+  z-index: 1000 !important;
+}

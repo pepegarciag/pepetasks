@@ -16227,3 +16227,7 @@ textarea.c-input {
   height: 100% !important;
 }
 
+.wickedpicker {
+  z-index: 1000 !important;
+}
+

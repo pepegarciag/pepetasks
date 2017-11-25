@@ -19,6 +19,7 @@
 
     <!-- Stylesheet -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/wickedpicker.min.css') }}" rel="stylesheet">
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -33,9 +34,16 @@
 
                 <div class="c-search-form__section">
                     <div class="c-field has-icon-left">
-                        <span class="c-field__icon"><i class="fa fa-tasks"></i></span>
+                        <span class="c-field__icon" style="{{ $errors->first('event') ? 'top: 30%' : ''}}">
+                            <i class="fa {{ $errors->first('event') ? 'fa-times u-color-danger' : 'fa-tasks' }}"></i>
+                        </span>
                         <label class="c-field__label u-hidden-visually" for="event">Title</label>
-                        <input class="c-input" id="event" name="event" type="text" placeholder="Title" value="{{ old('event') }}">
+                        <input class="c-input {{ $errors->first('event') ? 'c-input--danger': '' }}" id="event" name="event" type="text" placeholder="Title" value="{{ old('event') }}" required>
+                        @if ($errors->first('event'))
+                            <small class="c-field__message u-color-danger u-pl-small">
+                                <i class="fa fa-times-circle"></i>{{ $errors->first('event') }}
+                            </small>
+                        @endif
                     </div>
                 </div>
 
@@ -49,9 +57,31 @@
 
                 <div class="c-search-form__section">
                     <div class="c-field has-icon-left">
-                        <span class="c-field__icon"><i class="fa fa-calendar"></i></span>
+                        <span class="c-field__icon" style="{{ $errors->first('date') ? 'top: 30%' : ''}}">
+                            <i class="fa {{ $errors->first('date') ? 'fa-times u-color-danger' : 'fa-calendar' }}"></i>
+                        </span>
                         <label class="c-field__label u-hidden-visually" for="date">Date</label>
-                        <input class="c-input" data-toggle="datepicker" id="date" name="date" type="text" placeholder="Date" value="{{ old('date') }}">
+                        <input class="c-input {{ $errors->first('date') ? 'c-input--danger': '' }}" data-toggle="datepicker" id="date" name="date" type="text" placeholder="Date" value="{{ old('date') ? old('date') : (new \Carbon\Carbon)->format('d/m/Y') }}" required>
+                        @if ($errors->first('date'))
+                            <small class="c-field__message u-color-danger u-pl-small">
+                                <i class="fa fa-times-circle"></i>{{ $errors->first('date') }}
+                            </small>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="c-search-form__section">
+                    <div class="c-field has-icon-left">
+                        <span class="c-field__icon" style="{{ $errors->first('time') ? 'top: 30%' : ''}}">
+                            <i class="fa {{ $errors->first('time') ? 'fa-times u-color-danger' : 'fa-clock-o' }}"></i>
+                        </span>
+                        <label class="c-field__label u-hidden-visually" for="date">Date</label>
+                        <input class="timepicker c-input {{ $errors->first('time') ? 'c-input--danger': '' }}" type="text" name="time" value="{{ old('time') }}" placeholder="Time" required/>
+                        @if ($errors->first('time'))
+                            <small class="c-field__message u-color-danger u-pl-small">
+                                <i class="fa fa-times-circle"></i>{{ $errors->first('time') }}
+                            </small>
+                        @endif
                     </div>
                 </div>
 
@@ -87,12 +117,12 @@
                                 {{ $event->description }}
                             </td>
                             <td class="c-table__cell">
-                                {{ $event->date->format('d/m/Y') }}
+                                {{ $event->date->format('d/m/Y H:i') }}
                             </td>
 
                             <td class="c-table__cell">
                                 <div class="c-switch {{ ($event->active) ? "is-active" : "" }}">
-                                    <input class="c-switch__input" id="active" type="checkbox">
+                                    <input class="c-switch__input" id="active" type="checkbox" {{ ($event->active) ? "checked" : "" }}>
                                 </div>
                             </td>
 
@@ -130,7 +160,7 @@
                                 <h3>Edit event</h3>
                             </div>
                             <div class="u-width-25">
-                                <div class="c-switch {{ ($event->active) ? "is-active" : "" }} u-mt-xsmall u-ml-small">
+                                <div class="c-switch u-mt-xsmall u-ml-small">
                                     <label class="c-switch__label u-hidden-visually" for="active">Active</label>
                                     <input class="c-switch__input" id="active" name="active" type="checkbox" value="1">
                                 </div>
@@ -142,7 +172,7 @@
                         <div class="c-field has-icon-left">
                             <span class="c-field__icon"><i class="fa fa-tasks"></i></span>
                             <label class="c-field__label u-hidden-visually" for="event">Title</label>
-                            <input class="c-input" id="event" name="event" type="text" placeholder="Title">
+                            <input class="c-input" id="event" name="event" type="text" placeholder="Title" required>
                         </div>
                     </div>
 
@@ -158,7 +188,15 @@
                         <div class="c-field has-icon-left">
                             <span class="c-field__icon"><i class="fa fa-calendar"></i></span>
                             <label class="c-field__label u-hidden-visually" for="date">Date</label>
-                            <input class="c-input" data-toggle="datepicker" id="date" name="date" type="text" placeholder="Date">
+                            <input class="c-input" data-toggle="datepicker" id="date" name="date" type="text" placeholder="Date" required>
+                        </div>
+                    </div>
+
+                    <div class="c-search-form__section">
+                        <div class="c-field has-icon-left">
+                            <span class="c-field__icon"><i class="fa fa-clock-o"></i></span>
+                            <label class="c-field__label u-hidden-visually" for="date">Date</label>
+                            <input class="c-input" type="text" name="time" id="time" placeholder="Time" required/>
                         </div>
                     </div>
 
@@ -187,6 +225,7 @@
                     <div class="modal-footer u-text-center u-mt-medium">
                         <button class="c-btn c-btn--danger c-btn--large u-mr-small" type="submit">Delete</button>
                         <button class="c-btn c-btn--primary c-btn--large u-ml-small" type="submit">Close</button>
+                        <button class="c-btn c-btn--primary c-btn--large u-ml-small" type="submit">Close</button>
                     </div>
 
                 </form>
@@ -196,5 +235,13 @@
 </div>
 
 <script src="{{ asset('js/main.min.js') }}"></script>
+<script>
+    $(document).ready(function(){
+        $('.timepicker').wickedpicker({
+            twentyFour: true,
+            title: 'Pick event time'
+        });
+    });
+</script>
 </body>
 </html>

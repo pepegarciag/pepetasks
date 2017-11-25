@@ -14,9 +14,18 @@ $(document).ready(function(){
             data: '',
             dataType: 'json',
             success: function (data) {
+                $("#edit-event #active").prop('checked', data.active);
+                if (data.active == 1) {
+                    $("#edit-event .c-switch").addClass('is-active');
+                }
                 $("#edit-event #event").val(data.name);
                 $("#edit-event #description").val(data.description);
                 $("#edit-event #date").val(data.dateFormatted);
+                $('#edit-event #time').wickedpicker({
+                    now: data.timeFormatted,
+                    twentyFour: true,
+                    title: 'Pick event time'
+                });
                 $("#edit-event").attr('action', '/event/' + data.id);
             },
             error: function (data) {

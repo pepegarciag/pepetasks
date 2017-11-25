@@ -8,7 +8,7 @@ var Switch = function(){
 	$switch.on('click', function(e){
 		$(this).toggleClass('is-active');
 		var $input = $(this).find('input');
-		$input.attr('checked', !$input.prop('checked'));
+		$input.prop('checked', !$input.prop('checked'));
 		return false;
 	});
 };

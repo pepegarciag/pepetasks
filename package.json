@@ -18,10 +18,8 @@
   "devDependencies": {
     "axios": "^0.15.3",
     "cross-env": "^3.2.3",
-    "jquery": "^3.1.1",
     "laravel-mix": "^1.0",
-    "lodash": "^4.17.4",
-    "vue": "^2.1.10"
+    "lodash": "^4.17.4"
   },
   "dependencies": {
     "@fengyuanchen/datepicker": "^0.6.3",
@@ -35,6 +33,7 @@
     "jquery-match-height": "^0.7.2",
     "jqvmap": "^1.5.1",
     "moment": "^2.18.1",
-    "select2": "^4.0.6-rc.0"
+    "select2": "^4.0.6-rc.0",
+    "wickedpicker": "^0.4.3"
   }
 }

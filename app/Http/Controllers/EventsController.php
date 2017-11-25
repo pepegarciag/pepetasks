@@ -18,16 +18,18 @@ class EventsController extends Controller
     {
         $this->validate($request, [
             'event' => 'required|min:5',
-            'date' => 'required',
+            'date' => 'required|date_format:d/m/Y|after:yesterday',
+            'time' => 'required'
         ], [
-            'required' => 'Please fill in the :attribute',
+            'required' => ':attribute is required',
             'min' => ':attribute field must have at least :min characters',
+            'after' => 'Date must be today or before.',
         ]);
 
         $event = new Event();
         $event->name = $request->event;
         $event->description = $request->description;
-        $event->date = Carbon::createFromFormat('d/m/Y', $request->date);
+        $event->date = Carbon::createFromFormat('d/m/Y H : i', "{$request->date} $request->time");
         $event->active = TRUE;
         $event->save();
 
@@ -36,7 +38,8 @@ class EventsController extends Controller
 
     public function get(Request $request, Event $event)
     {
-	    $event->dateFormatted = $event->date->format('Y-m-d');
+	    $event->dateFormatted = $event->date->format('d/m/Y');
+	    $event->timeFormatted = $event->date->format('H:i');
         return $event;
     }
 
@@ -53,7 +56,7 @@ class EventsController extends Controller
         }
 
 	    if ($request->has('date')) {
-            $fields['date'] = $request->date;
+            $fields['date'] = Carbon::createFromFormat('d/m/Y H : i', "{$request->date} $request->time");
         }
 
         if ($request->ajax()) {
