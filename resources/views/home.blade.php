@@ -114,7 +114,7 @@
                             </td>
 
                             <td class="c-table__cell">
-                                {{ $event->description }}
+                                <span>{{ $event->description }}</span>
                             </td>
                             <td class="c-table__cell">
                                 {{ $event->date->format('d/m/Y H:i') }}
@@ -146,9 +146,9 @@
 </div>
 
 <div class="c-modal modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="edit-modal">
-    <div class="c-modal__dialog modal-dialog" role="document">
+    <div class="c-modal__dialog modal-dialog" role="document" style="max-width:500px;">
         <div class="modal-content">
-            <div class="c-card u-p-medium u-mh-auto" style="max-width:500px;">
+            <div class="c-card u-p-medium u-mh-auto">
 
                 <form class="c-search-form c-search-form--dark" id="edit-event" method="post" action="">
 
@@ -202,7 +202,7 @@
 
                     {{ csrf_field() }}
 
-                    <button class="c-btn c-btn--fancy c-btn--fullwidth" type="submit">Create</button>
+                    <button class="c-btn c-btn--fancy c-btn--fullwidth" type="submit">Edit</button>
                 </form>
             </div>
         </div>
