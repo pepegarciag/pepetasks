@@ -224,10 +224,8 @@
 
                     <div class="modal-footer u-text-center u-mt-medium">
                         <button class="c-btn c-btn--danger c-btn--large u-mr-small" type="submit">Delete</button>
-                        <button class="c-btn c-btn--primary c-btn--large u-ml-small" type="submit">Close</button>
-                        <button class="c-btn c-btn--primary c-btn--large u-ml-small" type="submit">Close</button>
+                        <button class="c-btn c-btn--primary c-btn--large u-ml-small" data-dismiss="modal"> Close</button>
                     </div>
-
                 </form>
             </div>
         </div>
