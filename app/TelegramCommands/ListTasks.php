@@ -26,7 +26,7 @@ class ListTasks extends Command
 
     public function handle($arguments)
     {
-        $events = Event::where('active', 1)->get();
+        $events = Event::all();
         $response = '';
         foreach ($events as $event) {
             $response .= sprintf('%s - %s | %s' . PHP_EOL, $event->id, $event->name, $event->date->format('d/m/Y H:i'));
