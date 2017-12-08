@@ -52,7 +52,7 @@ class EventsController extends Controller
         }
 
         if ($request->has('description')) {
-            $fields['description'] = $request->description;
+            $fields['description'] = is_null($request->description) ? '' : $request->description;
         }
 
 	    if ($request->has('date')) {

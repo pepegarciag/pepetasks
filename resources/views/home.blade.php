@@ -210,9 +210,9 @@
 </div>
 
 <div class="c-modal modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal">
-    <div class="c-modal__dialog modal-dialog" role="document">
+    <div class="c-modal__dialog modal-dialog" role="document" style="max-width:500px;">
         <div class="modal-content">
-            <div class="c-card u-p-medium u-mh-auto" style="max-width:500px;">
+            <div class="c-card u-p-medium u-mh-auto">
                 <form class="c-search-form c-search-form--dark" id="delete-event" method="post" action="">
 
                     {!! method_field('delete') !!}
@@ -223,8 +223,7 @@
                     {{ csrf_field() }}
 
                     <div class="modal-footer u-text-center u-mt-medium">
-                        <button class="c-btn c-btn--danger c-btn--large u-mr-small" type="submit">Delete</button>
-                        <button class="c-btn c-btn--primary c-btn--large u-ml-small" data-dismiss="modal"> Close</button>
+                        <button class="c-btn c-btn--danger c-btn--fullwidth u-mr-small" type="submit">Delete</button>
                     </div>
                 </form>
             </div>
