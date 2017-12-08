@@ -30,7 +30,7 @@ class DeleteTask extends Command
         $event->delete();
 
         $this->replyWithChatAction(['action' => Actions::TYPING]);
-        $this->replyWithMessage(['text' => "Task: {$event->name} deleted"]);
+        $this->replyWithMessage(['text' => "Evento: {$event->name} borrado"]);
         //$this->replyWithMessage(['text' => $this->getUpdate()->getMessage()->get('from')->get('id')]);
     }
 }

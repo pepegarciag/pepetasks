@@ -29,7 +29,7 @@ class ListTasks extends Command
         $events = Event::where('active', 1)->get();
         $response = '';
         foreach ($events as $event) {
-            $response .= sprintf('%s - %s' . PHP_EOL, $event->id, $event->name);
+            $response .= sprintf('%s - %s | %s' . PHP_EOL, $event->id, $event->name, $event->date->format('d/m/Y H:i'));
         }
 
         // This will update the chat status to typing...

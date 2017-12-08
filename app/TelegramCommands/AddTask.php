@@ -24,17 +24,16 @@ class AddTask extends Command
     /**
      * @var string Command Description
      */
-    protected $description = "Add a new event";
+    protected $description = "Add a new event in: name, description, 10/09/2017 00:00 format.";
 
     public function handle($arguments)
     {
         $data = explode(',', $arguments);
 
         $event = new Event();
-
         $event->name = $data[0];
-        $event->description = trim($data[1]);
-	$event->date = Carbon::createFromformat('d/m/Y', trim($data[2]));
+        $event->description = empty(trim($data[1])) ? '' : trim($data[1]);
+	    $event->date = Carbon::createFromformat('d/m/Y H:i', trim($data[2]));
         $event->active = true;
         $event->save();
 
