@@ -76,7 +76,7 @@
                             <i class="fa {{ $errors->first('time') ? 'fa-times u-color-danger' : 'fa-clock-o' }}"></i>
                         </span>
                         <label class="c-field__label u-hidden-visually" for="date">Date</label>
-                        <input class="timepicker c-input {{ $errors->first('time') ? 'c-input--danger': '' }}" type="text" name="time" value="{{ old('time') }}" placeholder="Time" required/>
+                        <input class="c-input {{ $errors->first('time') ? 'c-input--danger': '' }}" type="time" name="time" value="{{ old('time') }}" required/>
                         @if ($errors->first('time'))
                             <small class="c-field__message u-color-danger u-pl-small">
                                 <i class="fa fa-times-circle"></i>{{ $errors->first('time') }}
@@ -195,8 +195,8 @@
                     <div class="c-search-form__section">
                         <div class="c-field has-icon-left">
                             <span class="c-field__icon"><i class="fa fa-clock-o"></i></span>
-                            <label class="c-field__label u-hidden-visually" for="date">Date</label>
-                            <input class="c-input" type="text" name="time" id="time" placeholder="Time" required/>
+                            <label class="c-field__label u-hidden-visually" for="date">Time</label>
+                            <input class="c-input" type="time" name="time" id="time" required/>
                         </div>
                     </div>
 
@@ -232,13 +232,5 @@
 </div>
 
 <script src="{{ asset('js/main.min.js') }}"></script>
-<script>
-    $(document).ready(function(){
-        $('.timepicker').wickedpicker({
-            twentyFour: true,
-            title: 'Pick event time'
-        });
-    });
-</script>
 </body>
 </html>

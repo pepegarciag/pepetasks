@@ -12,9 +12,6 @@ let mix = require('laravel-mix');
  */
 
 mix.sass('resources/assets/scss/main.scss', 'public/css');
-mix.copy('node_modules/wickedpicker/dist/wickedpicker.min.css', 'public/css');
-mix.copy('node_modules/wickedpicker/fonts/fontello.woff', 'public/fonts');
-mix.copy('node_modules/wickedpicker/fonts/fontello.ttf', 'public/fonts');
 
 mix.scripts([
     'node_modules/jquery/dist/jquery.min.js',

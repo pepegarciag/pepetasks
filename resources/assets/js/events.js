@@ -21,11 +21,7 @@ $(document).ready(function(){
                 $("#edit-event #event").val(data.name);
                 $("#edit-event #description").val(data.description);
                 $("#edit-event #date").val(data.dateFormatted);
-                $('#edit-event #time').wickedpicker({
-                    now: data.timeFormatted,
-                    twentyFour: true,
-                    title: 'Pick event time'
-                });
+                $('#edit-event #time').val(data.timeFormatted);
                 $("#edit-event").attr('action', '/event/' + data.id);
             },
             error: function (data) {

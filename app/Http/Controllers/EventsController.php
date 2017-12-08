@@ -29,7 +29,7 @@ class EventsController extends Controller
         $event = new Event();
         $event->name = $request->event;
         $event->description = is_null($request->description) ? '' : $request->description;;
-        $event->date = Carbon::createFromFormat('d/m/Y H : i', "{$request->date} $request->time");
+        $event->date = Carbon::createFromFormat('d/m/Y H:i', "{$request->date} $request->time");
         $event->active = TRUE;
         $event->save();
 
