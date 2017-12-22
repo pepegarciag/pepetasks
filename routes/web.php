@@ -12,7 +12,7 @@
 */
 $telegramToken = env('TELEGRAM_BOT_TOKEN');
 
-Route::group(['middleware' => 'auth.basic'], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'HomeController@index')->name('home');
 
     Route::post('/event', 'EventsController@add')->name('addEvent');
@@ -21,8 +21,12 @@ Route::group(['middleware' => 'auth.basic'], function () {
     Route::delete('/event/{event}', 'EventsController@delete')->name('deleteEvent');
 });
 
+//Route::get('/', 'Auth\LoginController@showLoginForm');
+
 Route::post("/{$telegramToken}/webhook", function () {
     Telegram::commandsHandler(true);
 
     return 'ok';
 });
+
+Auth::routes();

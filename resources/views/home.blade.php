@@ -25,6 +25,33 @@
 <!--[if lte IE 9]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 <![endif]-->
+<header class="c-navbar">
+    <a class="c-navbar__brand" href="#!">
+        <img src="img/logo.png" alt="Dashboard's Logo">
+    </a>
+
+    <nav class="c-nav collapse" id="main-nav">
+        <ul class="c-nav__list">
+            <li class="c-nav__item">
+                <a class="c-nav__link" href="{{ route('home') }}">Pepetasks</a>
+            </li>
+            <li class="c-nav__item">
+                <span class="c-nav__link">Hola {{ $user->name }}!</span>
+            </li>
+            <li class="c-nav__item">
+                <a class="c-nav__link" href="{{ route('home') }}">Inicio</a>
+            </li>
+            <li class="c-nav__item">
+                <a class="c-nav__link" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+            </li>
+            <li class="c-nav__item">
+                <a href="#" class="c-nav__link"><span class="token">Telegram token: {{ $user->telegram_token }}</span></a>
+            </li>
+</header>
 
 <div class="container u-mt-medium">
     <div class="row">
@@ -94,7 +121,7 @@
             <main>
                 <table class="c-table events">
                     <caption class="c-table__title">
-                        Events <small>{{ count($events) }} total</small>
+                        Events <small>{{ count($user->events) }} total</small>
                     </caption>
                     <thead class="c-table__head c-table__head--slim">
                         <tr class="c-table__row">
@@ -107,7 +134,7 @@
                     </thead>
 
                     <tbody>
-                    @foreach($events as $event)
+                    @foreach($user->events as $event)
                         <tr class="c-table__row" data-id="{{ $event->id }}">
                             <td class="c-table__cell c-table__cel">
                             {{ $event->name }}

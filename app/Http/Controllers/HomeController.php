@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Event;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //$this->middleware('auth');
+    }
 
     /**
      * Show the application dashboard.
@@ -14,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
-        return view('home', ['events' => $events]);
+        return view('home', [
+            'user' => Auth::user()->load('events'),
+        ]);
     }
 }

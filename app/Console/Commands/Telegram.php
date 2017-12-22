@@ -40,12 +40,12 @@ class Telegram extends Command
      */
     public function handle()
     {
-        $events = Event::where('active', 1)->get();
+        $events = Event::where('active', 1)->get()->load('user');
 
         foreach ($events as $event) {
             if ($event->date->lte(Carbon::now())) {
                 TelegramApi::sendMessage([
-                    'chat_id' => '4357059',
+                    'chat_id' => $event->user->telegram_id,
                     'text' => "{$event->name} | {$event->description}",
                 ]);
 

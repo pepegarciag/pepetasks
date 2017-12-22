@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'telegram_token',
     ];
 
     /**
@@ -30,5 +30,10 @@ class User extends Authenticatable
     public function tasks()
     {
         return $this->hasMany(Task::class);
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
     }
 }

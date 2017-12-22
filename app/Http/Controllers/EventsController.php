@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Event;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class EventsController extends Controller
@@ -31,7 +32,7 @@ class EventsController extends Controller
         $event->description = is_null($request->description) ? '' : $request->description;;
         $event->date = Carbon::createFromFormat('d/m/Y H:i', "{$request->date} $request->time");
         $event->active = TRUE;
-        $event->save();
+        Auth::user()->events()->save($event);
 
         return back();
     }
