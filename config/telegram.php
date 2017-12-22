@@ -60,5 +60,6 @@ return [
         App\TelegramCommands\AddTask::class,
         App\TelegramCommands\ListTasks::class,
         App\TelegramCommands\DeleteTask::class,
+        App\TelegramCommands\AttachToken::class,
     ],
 ];
