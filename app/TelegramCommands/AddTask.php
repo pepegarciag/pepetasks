@@ -3,6 +3,7 @@
 namespace App\TelegramCommands;
 
 use App\Event;
+use App\User;
 use Carbon\Carbon;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
@@ -28,6 +29,7 @@ class AddTask extends Command
 
     public function handle($arguments)
     {
+        $user = User::where('telegram_id', $this->getUpdate()->getMessage()->get('from')->get('id'));
         $data = explode(',', $arguments);
 
         $event = new Event();
@@ -35,7 +37,7 @@ class AddTask extends Command
         $event->description = empty(trim($data[1])) ? '' : trim($data[1]);
 	    $event->date = Carbon::createFromformat('d/m/Y H:i', trim($data[2]));
         $event->active = true;
-        $event->save();
+        $user->events()->save($event);
 
         // This will update the chat status to typing...
         $this->replyWithChatAction(['action' => Actions::TYPING]);

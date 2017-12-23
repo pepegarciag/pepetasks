@@ -26,11 +26,16 @@ class DeleteTask extends Command
 
     public function handle($arguments)
     {
+        $user = User::where('telegram_id', $this->getUpdate()->getMessage()->get('from')->get('id'));
         $event = Event::find($arguments);
-        $event->delete();
+        if ($event->user->email == $user->email) {
+            $event->delete();
+            $this->replyWithChatAction(['action' => Actions::TYPING]);
+            $this->replyWithMessage(['text' => "Evento: {$event->name} borrado"]);
+        }
 
         $this->replyWithChatAction(['action' => Actions::TYPING]);
-        $this->replyWithMessage(['text' => "Evento: {$event->name} borrado"]);
+        $this->replyWithMessage(['text' => "Ese evento no te pertenece!"]);
         //$this->replyWithMessage(['text' => AddTask.php]);
     }
 }

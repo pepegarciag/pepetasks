@@ -26,9 +26,9 @@ class ListTasks extends Command
 
     public function handle($arguments)
     {
-        $events = Event::all();
+        $user = User::where('telegram_id', $this->getUpdate()->getMessage()->get('from')->get('id'))->load('events');
         $response = '';
-        foreach ($events as $event) {
+        foreach ($user->events as $event) {
             $response .= sprintf('%s - %s | %s' . PHP_EOL, $event->id, $event->name, $event->date->format('d/m/Y H:i'));
         }
 
