@@ -28,7 +28,7 @@ class AddTask extends Command
 
     public function handle($arguments)
     {
-        $user = User::where('telegram_id', $this->getUpdate()->getMessage()->get('from')->get('id'));
+        $user = User::where('telegram_id', $this->getUpdate()->getMessage()->get('from')->get('id'))->get()->first();
         $data = explode(',', $arguments);
 
         $event = new Event();

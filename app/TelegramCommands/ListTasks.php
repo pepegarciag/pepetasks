@@ -26,10 +26,18 @@ class ListTasks extends Command
 
     public function handle($arguments)
     {
-        $user = User::where('telegram_id', $this->getUpdate()->getMessage()->get('from')->get('id'))->load('events');
-        $response = '';
-        foreach ($user->events as $event) {
-            $response .= sprintf('%s - %s | %s' . PHP_EOL, $event->id, $event->name, $event->date->format('d/m/Y H:i'));
+        $user = User::where('telegram_id', $this->getUpdate()->getMessage()->get('from')->get('id'))->get()->load(['events' => function( $query) {
+            $query->where('active', true);
+        }])->first();
+
+        if ($user->events->isEmpty()) {
+            $response = 'No tienes eventos activos';
+        }
+        else {
+            $response = '';
+            foreach ($user->events as $event) {
+                $response .= sprintf('%s - %s | %s' . PHP_EOL, $event->id, $event->name, $event->date->format('d/m/Y H:i'));
+            }
         }
 
         // This will update the chat status to typing...
