@@ -2,12 +2,9 @@
 
 namespace App\TelegramCommands;
 
-use App\Event;
 use App\User;
-use Carbon\Carbon;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
-use Illuminate\Support\Facades\Log;
 
 /**
  * Created by PhpStorm.

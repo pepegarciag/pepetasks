@@ -9,6 +9,7 @@
 namespace App\TelegramCommands;
 
 use App\Event;
+use App\User;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 
