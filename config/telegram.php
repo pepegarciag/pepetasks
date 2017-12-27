@@ -57,9 +57,10 @@ return [
     */
     'commands' => [
         Telegram\Bot\Commands\HelpCommand::class,
-        App\TelegramCommands\AddTask::class,
-        App\TelegramCommands\ListTasks::class,
-        App\TelegramCommands\DeleteTask::class,
+        App\TelegramCommands\AddEvent::class,
+        App\TelegramCommands\AddEventDialogFlow::class,
+        App\TelegramCommands\ListEvents::class,
+        App\TelegramCommands\DeleteEvent::class,
         App\TelegramCommands\AttachToken::class,
     ],
 ];

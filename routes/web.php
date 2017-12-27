@@ -21,8 +21,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/event/{event}', 'EventsController@delete')->name('deleteEvent');
 });
 
-//Route::get('/', 'Auth\LoginController@showLoginForm');
-
 Route::post("/{$telegramToken}/webhook", function () {
     Telegram::commandsHandler(true);
 

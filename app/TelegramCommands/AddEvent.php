@@ -14,7 +14,7 @@ use Telegram\Bot\Commands\Command;
  * Date: 26/6/17
  * Time: 22:47
  */
-class AddTask extends Command
+class AddEvent extends Command
 {
     /**
      * @var string Command Name

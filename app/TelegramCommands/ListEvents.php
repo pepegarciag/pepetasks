@@ -12,7 +12,7 @@ use App\User;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 
-class ListTasks extends Command
+class ListEvents extends Command
 {
     /**
      * @var string Command Name

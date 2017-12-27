@@ -13,7 +13,7 @@ use App\User;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 
-class DeleteTask extends Command
+class DeleteEvent extends Command
 {
     /**
      * @var string Command Name

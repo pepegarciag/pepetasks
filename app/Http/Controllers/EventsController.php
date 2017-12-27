@@ -57,7 +57,7 @@ class EventsController extends Controller
         }
 
 	    if ($request->has('date')) {
-            $fields['date'] = Carbon::createFromFormat('d/m/Y H : i', "{$request->date} $request->time");
+            $fields['date'] = Carbon::createFromFormat('d/m/Y H:i', "{$request->date} $request->time");
         }
 
         if ($request->ajax()) {
@@ -74,8 +74,9 @@ class EventsController extends Controller
 
     public function delete(Request $request, Event $event)
     {
-        // May improve this.
-        $event->delete();
+        if (Auth::user()->email && $event->user->email) {
+            $event->delete();
+        }
         return back();
     }
 }
