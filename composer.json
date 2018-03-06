@@ -12,8 +12,7 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "mtdowling/cron-expression": "^1.2",
-        "webpatser/laravel-uuid": "^3.0",
-        "zarincheg/telegram-bot-dialogs": "dev-master"
+        "webpatser/laravel-uuid": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
