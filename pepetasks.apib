@@ -1,0 +1,41 @@
+FORMAT: 1A
+HOST: https://pepetasks.es/api/v1
+
+# Pepetasks
+
+Pepetasks is a simple webapp to store your tasks and schedule them. You will recieve a notification via
+telegram once the tasks is due to do.
+
+# Group Events
+
+## Events collection [/events]
+
+### GET 
++ Request
+    + Headers
+    
+            Accept: application/json
+
++ Response 200 (application/json)
+    + Attributes
+        - data (array[Event])
+
+## Event [/events/{id}]
++ Parameters
+  + id: `42` - The unique ID of the event.
+  
+### GET 
++ Response 200 (application/json)
+    + Attributes
+        - data (Event)
+
+# Data Structures
+
+## Event
+
+- id: 1 (number, required) - The unique ID of the event.
+- name: `Recoger lentillas` (string, required) - The name of the event.
+- description: `En gran plaza` (string, optional) - The description of the event.
+- date: `1511969520` (string, required) - The date of the event
+- active: true (boolean) - The status of the event
+- created_at: `1511606370` (string) - The date when the event was created.
