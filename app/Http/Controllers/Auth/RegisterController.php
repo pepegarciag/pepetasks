@@ -68,6 +68,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'telegram_token' => (string) Uuid::generate(),
+            'api_token' => (string) Uuid::generate(),
         ]);
     }
 }

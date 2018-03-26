@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Str;
+
 
 class User extends Authenticatable
 {
@@ -35,5 +37,10 @@ class User extends Authenticatable
     public function events()
     {
         return $this->hasMany(Event::class);
+    }
+
+    public function generateToken()
+    {
+        return Str::limit(Str::random(60) . microtime(), 60, '');
     }
 }
