@@ -16,23 +16,23 @@
     "postinstall": "npm run prod"
   },
   "devDependencies": {
-    "axios": "^0.15.3",
-    "cross-env": "^3.2.3",
-    "laravel-mix": "^1.0",
+    "axios": "^0.18.0",
+    "cross-env": "^5.1.4",
+    "laravel-mix": "^2.1",
     "lodash": "^4.17.4"
   },
   "dependencies": {
-    "@fengyuanchen/datepicker": "^0.6.3",
-    "bootstrap": "^4.0.0-beta.2",
-    "chart.js": "^2.6.0",
+    "@fengyuanchen/datepicker": "^0.6.5",
+    "bootstrap": "^4.1.0",
+    "chart.js": "^2.7.2",
     "datatables.net": "^1.10.16",
     "dragula": "^3.7.2",
-    "dropzone": "^5.2.0",
-    "fullcalendar": "^3.4.0",
-    "jquery": "^3.2.1",
+    "dropzone": "^5.4.0",
+    "fullcalendar": "^3.9.0",
+    "jquery": "^3.3.1",
     "jquery-match-height": "^0.7.2",
     "jqvmap": "^1.5.1",
-    "moment": "^2.19.3",
-    "select2": "^4.0.6-rc.0"
+    "moment": "^2.22.1",
+    "select2": "^4.0.6-rc.1"
   }
 }
